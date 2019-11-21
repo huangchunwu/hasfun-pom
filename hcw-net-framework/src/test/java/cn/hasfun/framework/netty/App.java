@@ -38,7 +38,7 @@ public class App {
             Executors.newSingleThreadExecutor().submit(new Runnable() {
                 @Override
                 public void run() {
-                    rpcClient.sendPacket();
+                    rpcClient.sendPacket(null);
                 }
             });
         }

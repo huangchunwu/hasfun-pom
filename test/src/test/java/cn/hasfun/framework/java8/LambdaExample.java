@@ -190,6 +190,16 @@ public class LambdaExample {
 
 
     /**
+     * map<Integer, String> 转list<Dog>
+     */
+    @Test
+    public void test18() {
+        Map<Integer, String> stringMap = Map.of(1,"hello",2,"world",3,"say",4,"hello world");
+        List<Dog> dogList = stringMap.entrySet().stream().map(m->new Dog(m.getValue(),m.getKey())).collect(Collectors.toList());
+        dogList.forEach(System.out::println);
+    }
+
+    /**
      * 更全面的统计信息，摘要收集器可以返回一个特殊的内置统计对象。
      * 通过它，我们可以简单地计算出最小年龄、最大年龄、平均年龄、总和以及总数量
      */
@@ -252,9 +262,10 @@ public class LambdaExample {
 //        if (optional.isPresent()){
 //            System.out.println(optional.get());
 //        }
-        optional.ifPresent(v -> System.out.println(v));
 
-        optional.orElseGet(() -> 88);
+        optional.ifPresent(v -> System.out.println("ifPresent:"+v));
+
+        System.out.println("orElseGet:"+optional.filter(v->v>70).orElseGet(()->0));
 
         Company c = new Company();
         c.setEmployeeList(Arrays.asList(new Company.Employee()));
@@ -351,5 +362,6 @@ public class LambdaExample {
 
 
     }
+    
 
 }
