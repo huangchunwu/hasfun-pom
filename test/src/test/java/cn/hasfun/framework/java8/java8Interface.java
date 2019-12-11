@@ -26,6 +26,7 @@ public interface java8Interface {
     static int add(int i, int j){
         return i+j;
     }
+    //java9
     private void print(){
 
     }

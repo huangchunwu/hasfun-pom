@@ -40,4 +40,9 @@ public class Testjava11 {
 
         System.in.read();
     }
+
+    @Test
+    public void testLong(){
+        System.out.println(Long.valueOf(1).equals(1l));
+    }
 }

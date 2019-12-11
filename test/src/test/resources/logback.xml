@@ -2,8 +2,6 @@
 <configuration scan="true" scanPeriod="20 seconds">
 
     <property name="LEVEL" value="INFO" />
-    <logger name="io.netty" level="info"/>    
-    <logger name="org.apache" level="info"/>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 <!--        <layout class="ch.qos.logback.classic.PatternLayout">-->
 <!--            <Pattern>[requestId:%X{requestId:-defaultrequestId}][%file:%line]%date{yyyy-MM-dd HH:mm:ss.SSS} %blue([%level]) %red({%thread}) %msg%n</Pattern>-->
