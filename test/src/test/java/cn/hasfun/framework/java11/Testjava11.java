@@ -7,6 +7,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.Date;
 
 public class Testjava11 {
 
@@ -44,5 +45,11 @@ public class Testjava11 {
     @Test
     public void testLong(){
         System.out.println(Long.valueOf(1).equals(1l));
+
+        String s = "sddsffa";
+        System.out.println(s.contains("sfa"));
+
+        long time = System.currentTimeMillis();
+        time = time/1000/60/5 * 1000 * 60 * 5 + 1000 * 60 * 5;
     }
 }
