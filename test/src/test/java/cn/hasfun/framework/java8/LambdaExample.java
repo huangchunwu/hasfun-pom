@@ -362,6 +362,58 @@ public class LambdaExample {
 
 
     }
-    
 
+
+    /**
+     * 闭包：一言以蔽之：一个持有外部环境变量的函数就是闭包。
+     * 闭包是一个能够访问其他函数作用域的函数。
+     *
+     * 如何创建闭包？
+     * 只要在一个函数中再定义一个函数，这个内部函数就是一个闭包。
+     *
+     * 注意：只要满足一个函数在另一个函数的内部的条件，这个内部函数就是闭包，不管这个内部函数是以怎样的形式存在于外层函数中的。
+     *
+     * Java 8语言上的lambda表达式只实现了capture-by-value，也就是说它捕获的局部变量都会拷贝一份到lambda表达式的实体里，
+     * 然后在lambda表达式里要变也只能变自己的那份拷贝而无法影响外部原本的变量
+     *
+     * 但是Java只是不允许改变被lambda表达式捕获的变量，并没有限制这些变量所指向的对象的状态能不能变。要从lambda表达式向外传值的常见workaround之一就是用长度为1的数组：String[] a = new String[1];
+     * ... ( () -> a[0] = "a" );
+     * return a[0];JDK内部自己都有些代码这么做嗯…
+     *
+     * 作者：RednaxelaFX
+     *
+     * 是由于Java在实现匿名内部类对外部局部变量访问时，并不是像Go的编译器那样将局部变量提升到堆中，
+     * 然后传递引用来实现；而是对局部变量创建值拷贝，然后供匿名内部类来使用。
+     */
+    @Test
+    public void test19(){
+        var num = 1;
+//        var result = ()->{return num};
+//        System.out.println(result);
+    }
+
+    /**
+     * 如果匿名内部类要访问局部变量，那个变量必须是final的
+     *
+     * Java中的lambda表达式（以及匿名类）只能访问封闭范围的最终（或实际上最终）变量。
+     */
+    public static void print() {
+        Integer location = 1;
+        int  dog = 2;
+
+       new Thread(new Runnable() {
+           @Override
+           public void run() {
+//               dog ++;
+               System.out.println("Hello " + location+dog);
+           }
+       }).start();
+
+
+        int myVar = 42;
+        Supplier<Integer> lambdaFun = () -> myVar; // error
+        //myVar++;
+        System.out.println(lambdaFun.get());
+
+    }
 }
