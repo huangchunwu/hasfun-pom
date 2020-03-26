@@ -80,7 +80,7 @@ public class LinuxCmd {
 
     public static void main(String[] args) {
         try {
-            String result = exeCommand("ipconfig /all");
+            String result = exeCommand("ifconfig");
             System.out.println(result);
         } catch (IOException e) {
             e.printStackTrace();
