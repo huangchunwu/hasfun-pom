@@ -39,6 +39,7 @@
         <module>hcw-net-framework</module>
         <module>test</module>
         <module>hcw-telnet</module>
+        <module>hasfun-framework-springboot</module>
     </modules>
 
     <dependencyManagement>

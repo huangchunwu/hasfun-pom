@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: hasfun-framework-springboot
+
+server:
+  port: 9090
