@@ -1,0 +1,19 @@
+server:
+  port: 9091
+
+spring:
+  application:
+    name: hcw-framework-gateway
+  cloud:
+      gateway:
+        routes:
+          - id: news_route
+            uri: http://localhost:9090
+            predicates:
+              - Method=GET,POST
+            filters:
+              - name: RequestRateLimiter
+                args:
+                  redis-rate-limiter.replenishRate: 10
+                  redis-rate-limiter.burstCapacity: 20
+                  redis-rate-limiter.requestedTokens: 1

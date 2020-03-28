@@ -264,6 +264,12 @@ public class LambdaExample {
 //        }
 
         optional.ifPresent(v -> System.out.println("ifPresent:"+v));
+        optional.orElse(2);
+
+        Optional p =   Optional.ofNullable(null);
+        p.ifPresent(v->System.out.println("ifPresent:"+v));
+        Object b =  p.orElse(1);
+
 
         System.out.println("orElseGet:"+optional.filter(v->v>70).orElseGet(()->0));
 
@@ -360,8 +366,10 @@ public class LambdaExample {
         //dogList.stream().sorted(Comparator.comparing(v->v.getAge())).forEach(v->System.out.println(v.toString()));
         dogList.stream().sorted(Comparator.comparing(Dog::getAge)).forEach(v->System.out.println(v.toString()));
 
-
+        List<Map<Integer,Object>> mapList = List.of(Map.of(1,2),Map.of(5,3));
+        mapList.stream().min(Comparator.comparing(Map::values,(s1,s2)-> {return s1.equals(s2)?1:0;}));
     }
+
 
 
     /**
