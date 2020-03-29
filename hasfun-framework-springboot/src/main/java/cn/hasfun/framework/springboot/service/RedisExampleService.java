@@ -2,8 +2,12 @@ package cn.hasfun.framework.springboot.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Springboot redis 例子
@@ -20,10 +24,19 @@ public class RedisExampleService {
 
 
     @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private RedisTemplate redisTemplate;
+
 
     public  void setStringValue(String value){
-        stringRedisTemplate.boundValueOps("news-1001").set(value);
+        redisTemplate.boundValueOps("news-1001").set(value);
     }
 
+    public Map<Object,Object> getAll() {
+        Map<Object,Object> result = new HashMap<>();
+        Set<String> keys = redisTemplate.keys("*");
+        keys.forEach(key->{
+            result.put(key,0);
+        });
+        return result;
+    }
 }
