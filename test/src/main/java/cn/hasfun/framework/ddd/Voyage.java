@@ -20,7 +20,7 @@ public class Voyage {
     }
 
     public int getCargoSize(){
-        return cargoList.stream().mapToInt(v->v.getSize()).sum();
+        return cargoList.stream().mapToInt(v->v.hashCode()).sum();
     }
 
 }
