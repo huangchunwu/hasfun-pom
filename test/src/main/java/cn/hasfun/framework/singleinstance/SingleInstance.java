@@ -90,7 +90,7 @@ class SingleInstance3 {
 
     public static SingleInstance3 getSingleInstance() throws Exception {
         if (singleInstance == null) {
-            synchronized (SingleInstance2.class) {//双重检锁
+            synchronized (SingleInstance3.class) {//双重检锁
                 if (singleInstance == null) {
                     singleInstance = new SingleInstance3();
                 }
@@ -143,7 +143,7 @@ class SingleInstance4 {
 
     public static SingleInstance4 getSingleInstance() throws Exception {
         if (singleInstance == null) {
-            synchronized (SingleInstance2.class) {//双重检锁
+            synchronized (SingleInstance4.class) {//双重检锁
                 if (singleInstance == null) {
                     singleInstance = new SingleInstance4();
                 }
@@ -221,6 +221,8 @@ class Test4{
         constructor2.setAccessible(true);
         SingleInstance5 singleInstance6 = (SingleInstance5) constructor2.newInstance();
         System.out.println(singleInstance5.equals(singleInstance6));//抛异常。防止反射通过构造函数破坏
+
+
 
     }
 }

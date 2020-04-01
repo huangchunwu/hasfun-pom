@@ -1,10 +1,9 @@
 package cn.hasfun.framework.jvm.classloader;
 
 
-import org.apache.commons.exec.ExecuteWatchdog;
-
 /**
  * classloader 双亲委托
+ * -XX:+TraceClassLoading 可以看程序启动的时候，哪些class被加载来
  */
 public class ClassLoaderExample {
 
@@ -34,4 +33,10 @@ public class ClassLoaderExample {
 
     }
 
+}
+
+class Test{
+    public static void main(String[] args) {
+
+    }
 }
