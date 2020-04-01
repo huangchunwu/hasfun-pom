@@ -9,7 +9,7 @@ package cn.hasfun.framework.jvm.classloader;
  */
 public class ClassLoaderExample {
 
-
+    public static String s = "";
 
     static class MyClassLoader extends ClassLoader{
         @Override
@@ -38,7 +38,11 @@ public class ClassLoaderExample {
 }
 
 class Test{
-    public static void main(String[] args) {
+    //ClassLoaderExample classLoaderExample; //不会加载
+    static String s= ClassLoaderExample.s;//不会加载
 
+    public static void main(String[] args) {
+        //ClassLoaderExample classLoaderExample= new ClassLoaderExample();//会加载
+        //String s= ClassLoaderExample.s;
     }
 }
