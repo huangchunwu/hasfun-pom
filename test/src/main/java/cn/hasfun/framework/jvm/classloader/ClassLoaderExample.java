@@ -3,7 +3,9 @@ package cn.hasfun.framework.jvm.classloader;
 
 /**
  * classloader 双亲委托
- * -XX:+TraceClassLoading 可以看程序启动的时候，哪些class被加载来
+ * -XX:+TraceClassLoading (已废弃)
+ * -verbose:class
+ * 可以看程序启动的时候，哪些class被加载来
  */
 public class ClassLoaderExample {
 
