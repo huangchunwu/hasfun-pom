@@ -21,7 +21,7 @@ public class NewsController {
 
     @GetMapping(value = "/add")
     public String addOneNews(String content){
-        redisExampleService.setStringValue(content);
+        //redisExampleService.setStringValue(content);
         return "SUCCESS";
     }
 }

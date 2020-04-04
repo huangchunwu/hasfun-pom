@@ -2,6 +2,9 @@ package cn.hasfun.framework.springboot.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisClusterNode;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.ClusterOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,8 @@ public class RedisExampleService {
 
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    RedisConnectionFactory redisConnectionFactory;
 
 
     public  void setStringValue(String value){
@@ -37,6 +42,17 @@ public class RedisExampleService {
         keys.forEach(key->{
             result.put(key,0);
         });
+        return result;
+    }
+
+
+    public String queryClusterData(){
+       return redisConnectionFactory.getClusterConnection().get("name".getBytes()).toString();
+    }
+
+    public Map<String, Object> save(String name, String value) {
+        Map<String, Object> result = new HashMap<>();
+        result.put(name,redisConnectionFactory.getClusterConnection().set(name.getBytes(),value.getBytes()));
         return result;
     }
 }

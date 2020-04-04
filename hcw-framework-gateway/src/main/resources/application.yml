@@ -11,9 +11,9 @@ spring:
             uri: http://localhost:9090
             predicates:
               - Method=GET,POST
-            filters:
-              - name: RequestRateLimiter
-                args:
-                  redis-rate-limiter.replenishRate: 10
-                  redis-rate-limiter.burstCapacity: 20
-                  redis-rate-limiter.requestedTokens: 1
+#            filters:
+#              - name: RequestRateLimiter
+#                args:
+#                  redis-rate-limiter.replenishRate: 10
+#                  redis-rate-limiter.burstCapacity: 20
+#                  redis-rate-limiter.requestedTokens: 1
