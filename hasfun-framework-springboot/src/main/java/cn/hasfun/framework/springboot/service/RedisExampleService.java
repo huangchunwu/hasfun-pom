@@ -8,6 +8,7 @@ import org.springframework.data.redis.connection.RedisClusterNode;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.ClusterOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -31,8 +32,6 @@ public class RedisExampleService {
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
-    private RedisConnectionFactory redisConnectionFactory;
-    @Autowired
     private RedisUtil redisUtil;
 
 
@@ -50,15 +49,8 @@ public class RedisExampleService {
     }
 
 
-    public String queryClusterData(){
-       return redisConnectionFactory.getClusterConnection().get("name".getBytes()).toString();
-    }
 
-    public Map<String, Object> save(String key, String value) {
-        Map<String, Object> result = new HashMap<>();
-        result.put(key,redisConnectionFactory.getClusterConnection().set(key.getBytes(),value.getBytes()));
-        return result;
-    }
+
 
     public Map<String, Object> save2(String key, String value) {
         Map<String, Object> result = new HashMap<>();
@@ -67,10 +59,16 @@ public class RedisExampleService {
         return result;
     }
 
-    public Map<String, Object> save3(String key, String value) {
+    public Map<String, Object> save(String key, String value) {
         Map<String, Object> result = new HashMap<>();
-        redisTemplate.boundValueOps(key).set(value);
+        ValueOperations<String,String> operations=redisTemplate.opsForValue();
+        operations.set(key, value);
         result.put(key,"");
         return result;
+    }
+
+    public String get(String key) {
+        ValueOperations<String,String> operations=redisTemplate.opsForValue();
+        return operations.get(key);
     }
 }

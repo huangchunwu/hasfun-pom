@@ -22,8 +22,8 @@ public class RedisServerController {
     }
 
     @GetMapping(value = "/get")
-    public String get(){
-        return redisExampleService.queryClusterData();
+    public String get(String key){
+        return redisExampleService.get(key);
     }
 
     @GetMapping(value = "/add")
@@ -36,8 +36,4 @@ public class RedisServerController {
         return redisExampleService.save2(key,value);
     }
 
-    @GetMapping(value = "/add3")
-    public Map<String,Object> save3(String key,String value){
-        return redisExampleService.save2(key,value);
-    }
 }
