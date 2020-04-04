@@ -27,7 +27,17 @@ public class RedisServerController {
     }
 
     @GetMapping(value = "/add")
-    public Map<String,Object> save(String value){
-        return redisExampleService.save("name",value);
+    public Map<String,Object> save(String key,String value){
+        return redisExampleService.save(key,value);
+    }
+
+    @GetMapping(value = "/add2")
+    public Map<String,Object> save2(String key,String value){
+        return redisExampleService.save2(key,value);
+    }
+
+    @GetMapping(value = "/add3")
+    public Map<String,Object> save3(String key,String value){
+        return redisExampleService.save2(key,value);
     }
 }

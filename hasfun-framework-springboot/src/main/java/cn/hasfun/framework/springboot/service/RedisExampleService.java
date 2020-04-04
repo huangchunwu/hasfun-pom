@@ -1,6 +1,8 @@
 package cn.hasfun.framework.springboot.service;
 
 
+import cn.hasfun.framework.springboot.constant.Field;
+import cn.hasfun.framework.springboot.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisClusterNode;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -29,7 +31,9 @@ public class RedisExampleService {
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
-    RedisConnectionFactory redisConnectionFactory;
+    private RedisConnectionFactory redisConnectionFactory;
+    @Autowired
+    private RedisUtil redisUtil;
 
 
     public  void setStringValue(String value){
@@ -50,9 +54,23 @@ public class RedisExampleService {
        return redisConnectionFactory.getClusterConnection().get("name".getBytes()).toString();
     }
 
-    public Map<String, Object> save(String name, String value) {
+    public Map<String, Object> save(String key, String value) {
         Map<String, Object> result = new HashMap<>();
-        result.put(name,redisConnectionFactory.getClusterConnection().set(name.getBytes(),value.getBytes()));
+        result.put(key,redisConnectionFactory.getClusterConnection().set(key.getBytes(),value.getBytes()));
+        return result;
+    }
+
+    public Map<String, Object> save2(String key, String value) {
+        Map<String, Object> result = new HashMap<>();
+        result.put(Field.RESULT,"1");
+        result.put(key,redisUtil.setCacheMap(key,result));
+        return result;
+    }
+
+    public Map<String, Object> save3(String key, String value) {
+        Map<String, Object> result = new HashMap<>();
+        redisTemplate.boundValueOps(key).set(value);
+        result.put(key,"");
         return result;
     }
 }
