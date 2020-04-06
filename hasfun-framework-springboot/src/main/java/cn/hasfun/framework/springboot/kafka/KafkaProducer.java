@@ -17,8 +17,8 @@ public class KafkaProducer{
     private KafkaTemplate<String, String> template;
 
 
-    public void sendMsg(String msg){
-        template.send("test",msg).addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+    public void sendMsg(String topic,String msg){
+        template.send(topic,msg).addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
             public void onFailure(Throwable throwable) {
 
