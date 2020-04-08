@@ -5,10 +5,7 @@ spring:
     cluster:
       nodes:
         - node1:7000
-        - node1:7001
-        - node2:7000
         - node2:7001
-        - node3:7000
         - node3:7001
   kafka:
     clientId: hasfun-framework-springboot
@@ -33,6 +30,19 @@ spring:
         # 自动提交
         auto-commit-interval: 1000
         enable-auto-commit: true
+    # es相关配置
+  data:
+    elasticsearch:
+      # 配置集群名
+      cluster-name: elasticsearch-my   # 访问 es服务端 `http://127.0.0.1:9200/` 填写 `cluster_name` 对应的值
+      # 配置节点信息，逗号分隔，如果没有指定，则启动ClientNode 【 注：9200->图形界面端、9300->程序端 】
+      cluster-nodes: node1:9300
+      # 开启 Elasticsearch 仓库(默认值:true)
+      repositories:
+        enabled: true
+
+
+
 topicName:
   topic1: test
   topic2: test2
