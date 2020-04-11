@@ -22,7 +22,7 @@ public class DingApiController {
 
     @RequestMapping(value = "/user/get")
     public ExecResult queryUserByUserId(@RequestParam(value = "appName")String appName,@RequestParam(value = "code")String code) throws Exception {
-        return ExecResult.getSuccessResult(dingApiService.queryUserInfo(appName,code));
+        return ExecResult.getSuccessResult(dingApiService.queryUserByUserId(appName,code));
     }
 
 

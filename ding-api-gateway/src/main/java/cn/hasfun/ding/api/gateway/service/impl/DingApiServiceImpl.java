@@ -3,6 +3,7 @@ package cn.hasfun.ding.api.gateway.service.impl;
 import cn.hasfun.ding.api.gateway.config.DingConfig;
 import cn.hasfun.ding.api.gateway.repo.DingOpenApiRepo;
 import cn.hasfun.ding.api.gateway.service.DingApiService;
+import com.dingtalk.api.response.OapiUserGetResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,11 @@ public class DingApiServiceImpl implements DingApiService {
         return result;
     }
 
+    private String getUserId(String appName, String code) throws Exception {
+        var userGetuserinfoResponse = dingOpenApiRepo.getUserInfo(getAccessToken(appName), code);
+        return userGetuserinfoResponse.getUserid();
+    }
+
     @Override
     public Map<String, Object> getJsApiTicket(String appName) throws Exception {
         String key = appName + "_" + "jsapiticket";
@@ -80,6 +86,9 @@ public class DingApiServiceImpl implements DingApiService {
     }
 
 
+
+
+
     public  String sign(String ticket, String nonceStr, long timeStamp, String url) throws Exception {
         String plain = "jsapi_ticket=" + ticket + "&noncestr=" + nonceStr + "&timestamp=" + String.valueOf(timeStamp)
                 + "&url=" + url;
@@ -99,5 +108,12 @@ public class DingApiServiceImpl implements DingApiService {
         String result = formatter.toString();
         formatter.close();
         return result;
+    }
+
+    @Override
+    public Map<String, Object> queryUserByUserId(String appName, String code) throws Exception{
+        String  userId = this.getUserId(appName,code);
+        OapiUserGetResponse response = dingOpenApiRepo.getUserByUserId(getAccessToken(appName),userId);
+        return null;
     }
 }

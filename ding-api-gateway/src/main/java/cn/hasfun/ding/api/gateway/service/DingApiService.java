@@ -11,4 +11,6 @@ public interface DingApiService {
     Map<String,Object> getJsApiTicket(String appName) throws Exception;
 
     Map<String,Object> getJsApiInfo(String appName,String url) throws Exception;
+
+    Map<String,Object> queryUserByUserId(String appName, String code) throws Exception;
 }
