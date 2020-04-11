@@ -114,6 +114,7 @@ public class DingApiServiceImpl implements DingApiService {
     public Map<String, Object> queryUserByUserId(String appName, String code) throws Exception{
         String  userId = this.getUserId(appName,code);
         OapiUserGetResponse response = dingOpenApiRepo.getUserByUserId(getAccessToken(appName),userId);
-        return null;
+        Map<String, Object> result = Map.of("name",response.getName(),"userId",response.getUserid(),"jobNumber",response.getJobnumber(),"extattr",response.getExtattr(),"departMent",response.getDepartment());
+        return result;
     }
 }
