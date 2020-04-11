@@ -48,4 +48,4 @@ topicName:
   topic2: test2
 
 server:
-  port: 9090
+  port: 9091

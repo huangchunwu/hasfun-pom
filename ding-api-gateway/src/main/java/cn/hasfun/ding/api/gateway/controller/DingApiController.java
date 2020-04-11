@@ -20,12 +20,6 @@ public class DingApiController {
         return ExecResult.getSuccessResult(dingApiService.queryUserByUserId(appName,code));
     }
 
-
-    @RequestMapping(value = "/ticket/get")
-    public ExecResult getJsApiTicket(@RequestParam(value = "appName")String appName) throws Exception {
-        return ExecResult.getSuccessResult(dingApiService.getJsApiTicket(appName));
-    }
-
     @RequestMapping(value = "/jsapi/get")
     public ExecResult getJsApiInfo(@RequestParam(value = "appName")String appName,@RequestParam(value = "url")String url) throws Exception {
         return ExecResult.getSuccessResult(dingApiService.getJsApiInfo(appName, url));
