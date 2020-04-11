@@ -15,11 +15,6 @@ public class DingApiController {
     private DingApiService dingApiService;
 
 
-    @RequestMapping(value = "/userId/get")
-    public ExecResult getUserInfo(@RequestParam(value = "appName")String appName,@RequestParam(value = "code")String code) throws Exception {
-        return ExecResult.getSuccessResult(dingApiService.queryUserInfo(appName,code));
-    }
-
     @RequestMapping(value = "/user/get")
     public ExecResult queryUserByUserId(@RequestParam(value = "appName")String appName,@RequestParam(value = "code")String code) throws Exception {
         return ExecResult.getSuccessResult(dingApiService.queryUserByUserId(appName,code));
