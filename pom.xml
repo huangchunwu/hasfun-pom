@@ -41,6 +41,7 @@
         <module>hcw-telnet</module>
         <module>hasfun-framework-springboot</module>
         <module>hcw-framework-gateway</module>
+        <module>ding-api-gateway</module>
     </modules>
 
     <dependencyManagement>

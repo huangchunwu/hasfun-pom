@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ding-api-gateway
+  redis:
+    cluster:
+      nodes:
+        - node1:7000
+        - node2:7001
+        - node3:7001
+server:
+  port: 9090
+
+
+ding:
+  corId: ding250d0a8562ab074c35c2f4657eb6378f
+  agentId: 240191624
+  apps:
+    - appName: market-app
+      appKey: dingy45948eloduvbkwp
+      appSecret: k0K7whx1Ji5FpwB8JCwyx-eC9Clm839tawy3eVenZWyiuaUzlLz-_GqQbBUmxdtl
+    - appName:  project-app
+      appKey: dingzzm6ayyrnadkytd8
+      appSecret: zK6gc3U2vmDbaXrJdbqnAJ-FAVWjZvSPLYmgMrq3tAYapdRQC8dRsO8605ND3BWW

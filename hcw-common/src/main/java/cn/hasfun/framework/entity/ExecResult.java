@@ -14,7 +14,7 @@ public class ExecResult<T> {
 
     private T data;
 
-    public static ExecResult getSuccessResult() {
-        return ExecResult.builder().code(ExecStatusCode.SUCCESS).msg("success").build();
+    public static <T>ExecResult getSuccessResult(T data) {
+        return ExecResult.builder().data(data).code(ExecStatusCode.SUCCESS).msg("success").build();
     }
 }
