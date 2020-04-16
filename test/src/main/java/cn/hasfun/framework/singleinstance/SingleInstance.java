@@ -66,6 +66,7 @@ class Test{
         constructor.setAccessible(true);
         SingleInstance2 singleInstance4 = (SingleInstance2) constructor.newInstance();
         Assert.isTrue(singleInstance2.equals(singleInstance4));//false  ---结论：DCL不安全  私有构造函数会被反射给破坏单例子
+        // 当反射对象的accessible标志设为true时，则表示反射的对象在使用时应该取消Java语言访问检查。反之则检查。由于JDK的安全检查耗时较多，所以通过setAccessible(true)的方式关闭安全检查来提升反射速度
 
     }
 }

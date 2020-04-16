@@ -46,7 +46,12 @@ public class ObjectTest {
     @Test
     public void testObjectMem(){
         System.out.println(ClassLayout.parseInstance(new Object()).toPrintable());
+        System.out.println(ClassLayout.parseInstance(new T()).toPrintable());
     }
 
+    //24个字节
+    class T{
+        int i= 1;
+    }
 
 }
