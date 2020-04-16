@@ -14,6 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author huangchunwu
+ */
+@SuppressWarnings("ALL")
 @Service
 public class DingApiServiceImpl implements DingApiService {
 
@@ -41,7 +45,7 @@ public class DingApiServiceImpl implements DingApiService {
     @Override
     public Map<String, Object> queryUserInfo(String appName, String code) throws Exception {
         var userGetuserinfoResponse = dingOpenApiRepo.getUserInfo(getAccessToken(appName), code);
-        var result = new HashMap<String, Object>();
+        var result = new HashMap<String, Object>(4);
         result.put("userId", userGetuserinfoResponse.getUserid());
         result.put("deviceId", userGetuserinfoResponse.getDeviceId());
         result.put("isSys", userGetuserinfoResponse.getIsSys());
@@ -76,7 +80,7 @@ public class DingApiServiceImpl implements DingApiService {
         long timeStamp = System.currentTimeMillis() / 1000;
         String nonceStr = "hcwNo1";
         String  signature = sign(jsApiTicket.toString(),nonceStr,timeStamp,url);
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>(5);
         result.put("agentId",dingConfig.getAgentId());
         result.put("corpId",dingConfig.getCorId());
         result.put("timeStamp",timeStamp);
@@ -99,7 +103,12 @@ public class DingApiServiceImpl implements DingApiService {
 
     }
 
-    // 字节数组转化成十六进制字符串
+
+    /**
+     * 字节数组转化成十六进制字符串
+     * @param hash
+     * @return
+     */
     private static String byteToHex(final byte[] hash) {
         Formatter formatter = new Formatter();
         for (byte b : hash) {
