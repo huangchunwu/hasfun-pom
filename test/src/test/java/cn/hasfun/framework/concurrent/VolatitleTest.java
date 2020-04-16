@@ -10,8 +10,9 @@ package cn.hasfun.framework.concurrent;
  */
 public class VolatitleTest {
 
-    private /** volatile **/ boolean running = true;
+    private volatile  boolean running = true;
 
+    private int  i;
 
     void m(){
         System.out.println("m  start");
